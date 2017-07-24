@@ -36,8 +36,8 @@ figure {
   display: flex;
   justify-content: space-around;
   cursor: default;
-  color: gray;
   border-top: 1px solid gray;
+  color: gray;
 }
 
 .ticker::after {
@@ -50,8 +50,14 @@ figure {
 }
 
 .tick {
-  border-right: 1px solid gray;
+  border-right: 1px solid #bbb;
   padding: 0.25em;
+  color: #bbb;
+}
+
+.tick.multiple-5 {
+  border-color: gray;
+  color: gray;
 }
 
 .tick:last-child {
