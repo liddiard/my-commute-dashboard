@@ -1,0 +1,82 @@
+@keyframes advance {
+  from {
+    margin-left: 0;
+  }
+  to {
+    margin-left: 3.33333%;
+  }
+}
+
+html {
+  box-sizing: border-box;
+}
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+}
+
+figure {
+  margin: 0;
+  padding: 0;
+}
+
+.App {
+  margin: 1em;
+  position: relative;
+}
+
+.commute {
+  margin-bottom: 2em;
+}
+
+.ticker {
+  display: flex;
+  justify-content: space-around;
+  cursor: default;
+  color: gray;
+  border-top: 1px solid gray;
+}
+
+.ticker::after {
+  content: 'minutes away';
+  position: absolute;
+  right: 0;
+  font-size: 0.8em;
+  margin-top: 2.25em;
+  font-style: italic;
+}
+
+.tick {
+  border-right: 1px solid gray;
+  padding: 0.25em;
+}
+
+.tick:last-child {
+  border-right: 3px solid #c00;
+}
+
+.trains {
+  position: relative;
+}
+
+.train {
+  position: absolute;
+  bottom: 0;
+  animation: advance 60s forwards linear;
+  color: blue;
+}
+
+.station-name {
+  font-weight: bold;
+  margin-right: 1em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 960px) {
+  .tick:not(.multiple-5) {
+    display: none;
+  }
+}
