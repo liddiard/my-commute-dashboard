@@ -42,7 +42,7 @@ a:hover {
 
 .ticker {
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   cursor: default;
   border-top: 1px solid #666;
   color: #666;
