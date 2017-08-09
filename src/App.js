@@ -7,8 +7,8 @@ class App extends Component {
     super(props);
     this.state = {
       routes: {
-        inbound: [],
-        outbound: []
+        work: [],
+        home: []
       },
       notifications: false
     };
@@ -63,8 +63,8 @@ class App extends Component {
       )
     );
     return {
-      inbound: formattedRoutes.filter(route => route.route_direction_code === 'Inbound'),
-      outbound: formattedRoutes.filter(route => route.route_direction_code === 'Outbound')
+      work: formattedRoutes.filter(route => route.route_direction_code === 'Inbound'),
+      home: formattedRoutes.filter(route => route.route_direction_code === 'Outbound')
     };
   }
 
@@ -139,36 +139,42 @@ class App extends Component {
 
         <section id="home-work" className="commute">
           <h2>🏠 → 💼</h2>
-          {this.renderTrains('outbound')}
-          {this.renderTicker('outbound')}
+          {this.renderTrains('work')}
+          {this.renderTicker('work')}
         </section>
 
         <section id="work-home" className="commute">
           <h2>💼 → 🏠</h2>
-          {this.renderTrains('inbound')}
-          {this.renderTicker('inbound')}
+          {this.renderTrains('home')}
+          {this.renderTicker('home')}
         </section>
+
+        <footer>
+          <a href={`http://511.org/transittracker/?uuid=${this.props.trackerUUID}`}>
+            Transit tracker data source
+          </a>
+        </footer>
       </div>
     );
   }
 }
 
 App.defaultProps = {
-  trackerUUID: 'eb0d47d5-7df8-4184-bf38-c8712d99f4ef',
+  trackerUUID: '7fc9e591-cc32-41d1-a3e0-a31d7dfb13be',
   maxTime: 30, // minutes
   stations: {
     gish: {
-      direction: 'outbound',
+      direction: 'work',
       color: '#3C5092',
       distance: 8 // minutes
     },
     metro: {
-      direction: 'outbound',
+      direction: 'work',
       color: '#BD8E25',
       distance: 9 // minutes
     },
     karina: {
-      direction: 'inbound',
+      direction: 'home',
       color: '#563C94',
       distance: 6 // minutes
     }

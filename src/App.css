@@ -23,6 +23,14 @@ figure {
   padding: 0;
 }
 
+a {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
 .App {
   margin: 1em;
   position: relative;
@@ -79,6 +87,12 @@ figure {
   font-weight: bold;
   margin-right: 1em;
   text-transform: uppercase;
+}
+
+footer {
+  font-size: 0.8em;
+  margin: 4em 0;
+  text-align: center;
 }
 
 @media (max-width: 960px) {
