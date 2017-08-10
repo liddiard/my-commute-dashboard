@@ -44,8 +44,8 @@ a:hover {
   display: flex;
   justify-content: space-between;
   cursor: default;
-  border-top: 1px solid #666;
-  color: #666;
+  border-top: 1px solid #777;
+  color: #777;
 }
 
 .ticker::after {
@@ -58,16 +58,11 @@ a:hover {
 }
 
 .tick {
-  border-right: 1px solid #aaa;
+  border-right: 1px solid #777;
   padding: 0.25em;
-  color: #aaa;
+  color: #777;
   flex-basis: 0;
   flex-grow: 1;
-}
-
-.tick.multiple-5 {
-  border-color: #666;
-  color: #666;
 }
 
 .tick:last-child {
