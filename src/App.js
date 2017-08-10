@@ -85,7 +85,7 @@ class App extends Component {
 
   renderTicker(direction) {
     return <figure className="ticker">
-      {new Array(this.props.maxTime+1)
+      {new Array(this.props.maxTime)
       .fill(null)
       .map((_, index) => {
         // station to depart for at this time index
