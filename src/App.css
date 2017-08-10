@@ -83,6 +83,7 @@ a:hover {
   bottom: 0;
   animation: advance 60s forwards linear;
   color: blue;
+  transform: translateX(-50%);
 }
 
 .station-name {

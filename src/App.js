@@ -88,19 +88,20 @@ class App extends Component {
       {new Array(this.props.maxTime)
       .fill(null)
       .map((_, index) => {
+        const num = index;
         // station to depart for at this time index
         const departFor = Object.keys(this.props.stations)
         .filter(station =>
           this.props.stations[station].direction === direction && 
-          this.props.stations[station].distance === this.props.maxTime - index
+          this.props.stations[station].distance === this.props.maxTime - num
         )[0];
-        return <div className={`tick ${index % 5 === 0 ? 'multiple-5' : ''}`}
+        return <div className={`tick ${num % 5 === 0 ? 'multiple-5' : ''}`}
                     style={{ 
                       borderColor: departFor ? this.props.stations[departFor].color : '',
                       borderWidth: departFor ? 3 : ''
                     }} 
-                    key={index}>
-          {this.props.maxTime - index}
+                    key={num}>
+          {this.props.maxTime - num}
         </div>
       })}
     </figure>
