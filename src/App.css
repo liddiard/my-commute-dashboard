@@ -61,6 +61,8 @@ a:hover {
   border-right: 1px solid #aaa;
   padding: 0.25em;
   color: #aaa;
+  flex-basis: 0;
+  flex-grow: 1;
 }
 
 .tick.multiple-5 {
