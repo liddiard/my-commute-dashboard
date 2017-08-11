@@ -93,7 +93,7 @@ class App extends Component {
         const departFor = Object.keys(this.props.stations)
         .filter(station =>
           this.props.stations[station].direction === direction && 
-          this.props.stations[station].distance === this.props.maxTime - (num+1)
+          this.props.stations[station].distance === this.props.maxTime - num
         )[0];
         return <div className={`tick ${num % 5 === 0 ? 'multiple-5' : ''}`}
                     style={{ 
