@@ -27,6 +27,10 @@ a {
   text-decoration: none;
 }
 
+progress::-webkit-progress-value {
+  transition: width 1s;
+}
+
 a:hover {
   text-decoration: underline;
 }
@@ -34,6 +38,21 @@ a:hover {
 .App {
   margin: 1em;
   position: relative;
+}
+
+.update-status {
+  float: right;
+}
+
+.update-status progress {
+  display: block;
+  width: 100%;
+}
+
+.update-status p {
+  font-size: 0.75em;
+  color: #777;
+  margin: 0;
 }
 
 .commute {

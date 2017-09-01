@@ -10,14 +10,20 @@ class App extends Component {
         work: [],
         home: []
       },
-      notifications: false
+      notifications: false,
+      secsSinceUpdate: 0
     };
     this.getTracker = this.getTracker.bind(this);
   } 
 
   componentDidMount() {
     this.getTracker();
-    window.setInterval(this.getTracker, 60*1000);
+    window.setInterval(() => {
+      this.setState(prevState => ({
+        secsSinceUpdate: prevState.secsSinceUpdate + 1
+      }))
+    }, 1*1000);
+    window.setInterval(this.getTracker, this.props.updateFreq*1000);
   }
 
   /*
@@ -34,12 +40,14 @@ class App extends Component {
   */
 
   getTracker() {
-    console.log('getting tracker');
     request
     .get('https://proxy-prod.511.org/api-proxy/api/v1/transit/tracker/')
     .query({ uuid: this.props.trackerUUID })
     .then(res => {
-      this.setState({ routes: this.formatAPIResponse(res.body) });
+      this.setState({ 
+        routes: this.formatAPIResponse(res.body), 
+        secsSinceUpdate: 0
+      });
     })
     .catch(err => {
       throw err;
@@ -138,6 +146,12 @@ class App extends Component {
                   style={{color: this.props.stations[station].color}}>{station}</span>)}
         </legend>
 
+        <div className="update-status">
+          <progress min="0" max={this.props.updateFreq} 
+                    value={this.state.secsSinceUpdate} />
+          <p>Time until next update</p>
+        </div>
+
         <section id="home-work" className="commute">
           <h2>🏠 → 💼</h2>
           {this.renderTrains('work')}
@@ -161,6 +175,7 @@ class App extends Component {
 }
 
 App.defaultProps = {
+  updateFreq: 60, // update every x seconds
   trackerUUID: '7fc9e591-cc32-41d1-a3e0-a31d7dfb13be',
   maxTime: 30, // minutes
   stations: {
