@@ -10,20 +10,26 @@ class App extends Component {
         work: [],
         home: []
       },
-      notifications: false,
-      secsSinceUpdate: 0
+      notifications: false
     };
     this.getTracker = this.getTracker.bind(this);
   } 
 
   componentDidMount() {
+    this.pollTracker();
+    document.addEventListener('visibilitychange', () => {
+      if (!document.hidden) { // document was hidden and is now visible
+        this.pollTracker();
+      }
+    });
+  }
+
+  pollTracker() {
+    if (this.interval) {
+      window.clearInterval(this.interval);
+    }
     this.getTracker();
-    window.setInterval(() => {
-      this.setState(prevState => ({
-        secsSinceUpdate: prevState.secsSinceUpdate + 1
-      }))
-    }, 1*1000);
-    window.setInterval(this.getTracker, this.props.updateFreq*1000);
+    this.interval = window.setInterval(this.getTracker, this.props.updateFreq*1000);
   }
 
   /*
@@ -40,6 +46,7 @@ class App extends Component {
   */
 
   getTracker() {
+    console.log('Getting tracker...');
     request
     .get('https://proxy-prod.511.org/api-proxy/api/v1/transit/tracker/')
     .query({ uuid: this.props.trackerUUID })
@@ -145,12 +152,6 @@ class App extends Component {
             <span className="station-name" key={station}
                   style={{color: this.props.stations[station].color}}>{station}</span>)}
         </legend>
-
-        <div className="update-status">
-          <progress min="0" max={this.props.updateFreq} 
-                    value={this.state.secsSinceUpdate} />
-          <p>Time until next update</p>
-        </div>
 
         <section id="home-work" className="commute">
           <h2>🏠 → 💼</h2>
