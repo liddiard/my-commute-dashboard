@@ -95,6 +95,7 @@ class App extends Component {
   */
 
   getStopKey(route) {
+    debugger;
     return route.stop_name.toLowerCase().split(' ')[0]
   }
 
@@ -185,7 +186,7 @@ App.defaultProps = {
       color: '#3C5092',
       distance: 8 // minutes
     },
-    metro: {
+    'metro/airport': {
       direction: 'work',
       color: '#BD8E25',
       distance: 9 // minutes
